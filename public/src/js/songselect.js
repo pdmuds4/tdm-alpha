@@ -182,7 +182,7 @@ class SongSelect{
 		})
 		
 		var showCustom = false
-		if(gameConfig.google_credentials.gdrive_enabled){
+		if(gameConfig.google_credentials?.gdrive_enabled){
 			showCustom = true
 		}else if("webkitdirectory" in HTMLInputElement.prototype && !(/Android|iPhone|iPad/.test(navigator.userAgent))){
 			showCustom = true
@@ -358,7 +358,7 @@ class SongSelect{
 			waitPreview: 0
 		}
 		this.songSelecting = {
-			speed: 666,
+			speed: 333,
 			resize: 0.3,
 			scrollDelay: 0.1
 		}

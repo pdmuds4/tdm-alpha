@@ -55,7 +55,7 @@ class CustomSongs{
 		this.linkGdriveFolder = document.getElementById("link-gdrivefolder")
 		this.linkGdriveAccount = document.getElementById("link-gdriveaccount")
 		this.linkPrivacy = document.getElementById("link-privacy")
-		if(gameConfig.google_credentials.gdrive_enabled){
+		if(gameConfig.google_credentials?.gdrive_enabled){
 			this.setAltText(this.linkGdriveFolder, strings.customSongs.gdriveFolder)
 			pageEvents.add(this.linkGdriveFolder, ["mousedown", "touchstart"], this.gdriveFolder.bind(this))
 			this.items.push(this.linkGdriveFolder)
@@ -521,7 +521,7 @@ class CustomSongs{
 		if(this.hasLocal){
 			pageEvents.remove(this.linkLocalFolder, ["mousedown", "touchstart"])
 		}
-		if(gameConfig.google_credentials.gdrive_enabled){
+		if(gameConfig.google_credentials?.gdrive_enabled){
 			pageEvents.remove(this.linkGdriveFolder, ["mousedown", "touchstart"])
 			pageEvents.remove(this.linkGdriveAccount, ["mousedown", "touchstart"])
 			pageEvents.remove(this.linkPrivacy, ["mousedown", "touchstart"])

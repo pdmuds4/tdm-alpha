@@ -161,4 +161,6 @@ var assets = {
 	"categories": []
 }
 
-var gameConfig = {}
+var gameConfig = {
+	assets_baseurl: "assets/",
+}

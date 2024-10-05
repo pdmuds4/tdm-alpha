@@ -3,10 +3,8 @@
 import base64
 import bcrypt
 import hashlib
-try:
-    import config
-except ModuleNotFoundError:
-    raise FileNotFoundError('No such file or directory: \'config.py\'. Copy the example config file config.example.py to config.py')
+
+import config
 import json
 import re
 import requests
@@ -47,7 +45,7 @@ def take_config(name, required=False):
 
 app = Flask(__name__)
 client = MongoClient(host=os.environ.get("TAIKO_WEB_MONGO_HOST") or take_config('MONGO', required=True)['host'])
-basedir = take_config('BASEDIR') or '/'
+basedir = '/' or '/'
 
 app.secret_key = take_config('SECRET_KEY') or 'change-me'
 app.config['SESSION_TYPE'] = 'redis'
