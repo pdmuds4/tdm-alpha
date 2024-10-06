@@ -228,7 +228,7 @@
 		var category = fileObj.category
 		var category_id = fileObj.category_id
 		if(!this.limited){
-			var filePromise = file.read(prompt("太鼓さん次郎のファイルは\"sjis\"、TJAPlayer3のファイルは\"utf-8\"と入力してください。"))
+			var filePromise = file.read('sjis')
 		}else{
 			var filePromise = Promise.resolve()
 		}

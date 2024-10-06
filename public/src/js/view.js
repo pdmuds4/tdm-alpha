@@ -300,7 +300,7 @@
 					if(category != null && category.songSkin != null && category.songSkin.infoFill != null){
 						ctx.fillStyle = category.songSkin.infoFill
 					}else{
-						ctx.fillStyle = assets.categories.find(cat=>cat.title == 'default').songSkin.infoFill
+						ctx.fillStyle = assets.categories.find(cat=>cat.title == 'default')?.songSkin.infoFill
 					}
 					this.draw.roundedRect({
 						ctx: ctx,

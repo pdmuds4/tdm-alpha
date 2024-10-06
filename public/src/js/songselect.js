@@ -64,25 +64,25 @@ class SongSelect{
 				border: ["#ffe7ef", "#d36aa2"],
 				outline: "#d36aa2"
 			},
-			"plugins": {
-				sort: 0,
-				background: "#f6bba1",
-				border: ["#fde9df", "#ce7553"],
-				outline: "#ce7553"
-			},
+			// "plugins": {
+			// 	sort: 0,
+			// 	background: "#f6bba1",
+			// 	border: ["#fde9df", "#ce7553"],
+			// 	outline: "#ce7553"
+			// },
                         // カスタム曲スキン
-                        "upload": {
-                            sort: 0,
-                            background: "#ffe57f",
-                            border: ["#ffd54f", "#ff9800"],
-                            outline: "#ffab40",
-                        },
-						"keijiban": {
-                            sort: 0,
-                            background: "#1c1c1c",
-                            border: ["#000000", "#333333"],
-                            outline: "#222222",
-                        },
+                        // "upload": {
+                        //     sort: 0,
+                        //     background: "#ffe57f",
+                        //     border: ["#ffd54f", "#ff9800"],
+                        //     outline: "#ffab40",
+                        // },
+						// "keijiban": {
+                        //     sort: 0,
+                        //     background: "#1c1c1c",
+                        //     border: ["#000000", "#333333"],
+                        //     outline: "#222222",
+                        // },
 			"default": {
 				sort: null,
 				background: "rgba(0,0,0,0)",
@@ -110,27 +110,27 @@ class SongSelect{
 		this.search = new Search(this)
 
 		this.songs = []
-		for(let song of assets.songs){
-			var title = this.getLocalTitle(song.title, song.title_lang)
-			song.titlePrepared = title ? fuzzysort.prepare(this.search.normalizeString(title)) : null
-			var subtitle = this.getLocalTitle(title === song.title ? song.subtitle : "", song.subtitle_lang)
-			song.subtitlePrepared = subtitle ? fuzzysort.prepare(this.search.normalizeString(subtitle)) : null
-			this.songs.push(this.addSong(song))
-		}
-		this.songs.sort((a, b) => {
-			var catA = a.originalCategory in this.songSkin ? this.songSkin[a.originalCategory] : this.songSkin.default
-			var catB = b.originalCategory in this.songSkin ? this.songSkin[b.originalCategory] : this.songSkin.default
-			if(catA.sort !== catB.sort){
-				return catA.sort > catB.sort ? 1 : -1
-			}else if(a.originalCategory !== b.originalCategory){
-				return a.originalCategory > b.originalCategory ? 1 : -1
-			}else if(a.order !== b.order){
-				return a.order > b.order ? 1 : -1
-			}else{
-				return a.id > b.id ? 1 : -1
+		if(assets.songs?.length){
+			for(let song of assets.songs){
+				var title = this.getLocalTitle(song.title, song.title_lang)
+				song.titlePrepared = title ? fuzzysort.prepare(this.search.normalizeString(title)) : null
+				var subtitle = this.getLocalTitle(title === song.title ? song.subtitle : "", song.subtitle_lang)
+				song.subtitlePrepared = subtitle ? fuzzysort.prepare(this.search.normalizeString(subtitle)) : null
+				this.songs.push(this.addSong(song))
 			}
-		})
-		if(assets.songs.length){
+			this.songs.sort((a, b) => {
+				var catA = a.originalCategory in this.songSkin ? this.songSkin[a.originalCategory] : this.songSkin.default
+				var catB = b.originalCategory in this.songSkin ? this.songSkin[b.originalCategory] : this.songSkin.default
+				if(catA.sort !== catB.sort){
+					return catA.sort > catB.sort ? 1 : -1
+				}else if(a.originalCategory !== b.originalCategory){
+					return a.originalCategory > b.originalCategory ? 1 : -1
+				}else if(a.order !== b.order){
+					return a.order > b.order ? 1 : -1
+				}else{
+					return a.id > b.id ? 1 : -1
+				}
+			})
 			this.songs.push({
 				title: strings.back,
 				skin: this.songSkin.back,
@@ -195,12 +195,12 @@ class SongSelect{
 				category: strings.random
 			})
 		}
-		this.songs.push({
-			title: strings.plugins.title,
-			skin: this.songSkin.plugins,
-			action: "plugins",
-			category: strings.random
-		})
+		// this.songs.push({
+		// 	title: strings.plugins.title,
+		// 	skin: this.songSkin.plugins,
+		// 	action: "plugins",
+		// 	category: strings.random
+		// })
 
                 // カスタムメニュー
                 // this.songs.push({
@@ -209,17 +209,17 @@ class SongSelect{
                 //     action: "sourceCode",
                 // });
 				// for (let i = 0; i < 10; i++) {
-				    this.songs.push({
-                        title: "曲を投稿！",
-                        skin: this.songSkin.upload,
-                        action: "upload",
-                    });
-                // }
-				this.songs.push({
-					title: "掲示板",
-					skin: this.songSkin.keijiban,
-					action: "keijiban",
-				});
+				//     this.songs.push({
+                //         title: "曲を投稿！",
+                //         skin: this.songSkin.upload,
+                //         action: "upload",
+                //     });
+                // // }
+				// this.songs.push({
+				// 	title: "掲示板",
+				// 	skin: this.songSkin.keijiban,
+				// 	action: "keijiban",
+				// });
 		
 		this.songs.push({
 			title: strings.back,
